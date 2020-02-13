@@ -1,0 +1,5 @@
+#import <Foundation/Foundation.h>
+@interface PodsDummy_Pods_SwiftUI_Crud_Operation_SwiftUI_Crud_OperationUITests : NSObject
+@end
+@implementation PodsDummy_Pods_SwiftUI_Crud_Operation_SwiftUI_Crud_OperationUITests
+@end

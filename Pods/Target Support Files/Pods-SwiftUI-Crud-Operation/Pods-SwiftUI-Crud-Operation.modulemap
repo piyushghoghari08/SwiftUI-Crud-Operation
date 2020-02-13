@@ -1,0 +1,6 @@
+framework module Pods_SwiftUI_Crud_Operation {
+  umbrella header "Pods-SwiftUI-Crud-Operation-umbrella.h"
+
+  export *
+  module * { export * }
+}
