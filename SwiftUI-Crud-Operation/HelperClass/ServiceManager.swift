@@ -1,10 +1,9 @@
 //
 //  ServiceManager.swift
-//  DanDin
+//  SwiftUI-Crud-Operation
 //
-//  Created by PIYUSH  GHOGHARI on 23/01/19.
-//  Copyright © 2019 AK_Creation. All rights reserved.
-//
+//  Created by PIYUSH GHOGHARI on 13/02/20.
+//  Copyright © 2020 iTouchSoulation. All rights reserved.
 
 import UIKit
 import Alamofire
@@ -26,7 +25,7 @@ class ServiceManager: NSObject {
     /*=================================================
      * Function Name: callWebService
      * Function Parameter: parameters
-     * Function Return Type: dictResponse : [String : AnyObject]
+     * Function Return Type: dictResponse : [[String : AnyObject]]
      * Function Purpose: Common Service Calling function.
      ==================================================*/
     func callWebService(withURL url : URL,

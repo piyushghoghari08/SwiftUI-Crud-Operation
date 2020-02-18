@@ -56,6 +56,7 @@ struct AddUserDataView: View {
                                 notificationType: self.notificationMode[self.selectedMode],
                                 id: self.id,
                                 successBlock: { (Success) in
+                                    tempNotificationCenter.post(name: Notification.Name("updateUserData"), object: nil)
                                     self.isPresented = false
                             }) { (errorMessage: String) in
                                 print("errorMessage: -> \(errorMessage)")
@@ -68,6 +69,7 @@ struct AddUserDataView: View {
                                                          dateOfBirth: "\(self.selectedDate)",
                                 notificationType: self.notificationMode[self.selectedMode],
                                 successBlock: { (Success) in
+                                    tempNotificationCenter.post(name: Notification.Name("updateUserData"), object: nil)
                                     self.isPresented = false
                             }) { (errorMessage: String) in
                                 print("errorMessage: -> \(errorMessage)")
@@ -81,6 +83,7 @@ struct AddUserDataView: View {
                 }
             }.navigationBarTitle("Add Data")
                 .navigationBarItems(trailing: Button(action: {
+                    tempNotificationCenter.post(name: Notification.Name("updateUserData"), object: nil)
                     self.isPresented = false
                 }, label: {
                     Text("close")

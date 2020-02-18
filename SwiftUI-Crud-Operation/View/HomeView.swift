@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+var tempNotificationCenter = NotificationCenter.default
 
 struct HomeView: View {
     
@@ -15,9 +16,9 @@ struct HomeView: View {
     @State var objSelectedUserData = UserModel()
     @State var buttonClick = "add"
     
-    init() {
-        self.userData.getUserDataListViewModel()
-    }
+//    init() {
+//        self.userData.getUserDataListViewModel()
+//    }
     
     var body: some View {
         NavigationView {
@@ -50,25 +51,25 @@ struct HomeView: View {
                     })
                     // End
                     // Delete Button
-                    Button(action: {
-                        if self.buttonClick != "edit" || self.buttonClick != "add" {
-                            let objDeleteData = ServiceCall()
-                            objDeleteData.deleteUserDataAPI(id: objUserData.id ?? 0,
-                                                            successBlock: { (success) in
-                                                                self.userData.getUserDataListViewModel()
-                            }) { (errorMessage: String) in
-                                print("errorMessage: -> \(errorMessage)")
-                            }
-                            
-                        }
-                    }, label: {
+                    Button(action: {}, label: {
                         Text("Delete")
                             .foregroundColor(.white)
                             .fontWeight(.bold)
                             .padding(.all, 12)
                             .background(Color.red)
                             .cornerRadius(3)
-                    })
+                    }).onTapGesture {
+                        if self.buttonClick != "edit" || self.buttonClick != "add" {
+                                                   let objDeleteData = ServiceCall()
+                                                   objDeleteData.deleteUserDataAPI(id: objUserData.id ?? 0,
+                                                                                   successBlock: { (success) in
+                                                                                       self.userData.getUserDataListViewModel()
+                                                   }) { (errorMessage: String) in
+                                                       print("errorMessage: -> \(errorMessage)")
+                                                   }
+                                                   
+                                               }
+                    }
                     // End
                     
                 }.padding(.vertical, 8)
@@ -95,6 +96,7 @@ struct HomeView: View {
                         .padding(.horizontal, 12)
                         .background(Color.green)
                         .cornerRadius(4)
+                    
                 }))
                 .sheet(isPresented: $isPresentingAddModal, content: {
                     AddUserDataView(isPresented: self.$isPresentingAddModal,
@@ -103,6 +105,9 @@ struct HomeView: View {
                 })
         }.onAppear() {
             self.userData.getUserDataListViewModel()
+            tempNotificationCenter.addObserver(forName: Notification.Name("updateUserData"), object: nil, queue: nil) { (_) in
+                self.userData.getUserDataListViewModel()
+            }
         }
     }
 }

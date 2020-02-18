@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 
 class Constant: NSObject {
     //App details
@@ -32,16 +31,7 @@ class Constant: NSObject {
     
     struct KeyMessage {
         static let kSomethingWrong                  = "Something went wrong, try again"
-    }
-    
-    //Service request method's
-    struct REQUEST_METHOD_NAME {
-        static let GET      = HTTPMethod.get
-        static let POST     = HTTPMethod.post
-        static let PUT      = HTTPMethod.put
-        static let DELETE   = HTTPMethod.delete
-    }
-    
+    }    
     //Service List
     struct Service {
         //BASE URL
